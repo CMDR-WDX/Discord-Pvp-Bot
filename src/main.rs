@@ -1,5 +1,6 @@
 mod commands;
-use commands::{pvpself::pvpself, pvpwhois::pvpwhois};
+mod data;
+use commands::{pvpself::pvpself, pvpwhois::pvpwhois, pvpregister::pvpregister};
 use poise::serenity_prelude as serenity;
 
 pub struct Data {}
@@ -10,18 +11,18 @@ pub type Context<'a> = poise::Context<'a, Data, Error>;
 
 #[tokio::main]
 async fn main() {
-    dotenv::dotenv().expect("Failed to load data via dotenv.");
+    // This will panic and fail is there is an Error Return value.
+    data::startup_check().unwrap();
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
-            commands: vec![pvpself(), pvpwhois()],
+            commands: vec![pvpself(), pvpwhois(), pvpregister()],
             ..Default::default()
         })
-        .token(std::env::var("DISCORD_TOKEN").expect("missing DISCORD_TOKEN"))
+        .token(data::Environment::discord_token())
         .intents(serenity::GatewayIntents::non_privileged())
         .setup(|ctx, _ready, framework| {
             Box::pin(async move {
-                let guild_id_val: u64 = std::env::var("GGI_GUILD_ID").expect("missing GGI_GUILD_ID Env Var").parse().expect("Failed to parse content as integer");
-                let guild_id = serenity::GuildId(guild_id_val);
+                let guild_id = serenity::GuildId(data::Environment::guild_id());
                 poise::builtins::register_in_guild(ctx, &framework.options().commands, guild_id).await?;
                 Ok(Data {})
             })

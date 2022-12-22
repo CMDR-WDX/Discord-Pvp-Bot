@@ -2,7 +2,7 @@ use std::time::Duration;
 
 use super::super::{Context, Error};
 
-
+// Check if you have an Account with Pvp Bot.
 #[poise::command(slash_command)]
 pub async fn pvpself(
     ctx: Context<'_>
