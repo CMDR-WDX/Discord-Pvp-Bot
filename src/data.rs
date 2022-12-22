@@ -19,7 +19,6 @@ static ENVIRONMENT: OnceCell<Environment> = OnceCell::new();
 
 impl Environment {
 
-
     pub fn guild_id() -> u64 {
         return ENVIRONMENT.get().unwrap().ggi_guild_id;
     }
@@ -44,13 +43,14 @@ impl Environment {
         return ENVIRONMENT.get().unwrap().data_server_address.clone()
     }
 
-    
-
 }
 
 
 pub fn startup_check() -> Result<(), String> {
-    dotenv::dotenv().map_err(|_| "Failed to load data via dotenv.")?;
+    
+    if let Err(_) = dotenv::dotenv() {
+        println!("[INFO] No .env found. No Environment Variables were read.")
+    }
 
     let required_vars = vec![
         "DISCORD_TOKEN",

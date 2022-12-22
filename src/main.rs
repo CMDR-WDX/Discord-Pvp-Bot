@@ -27,5 +27,6 @@ async fn main() {
                 Ok(Data {})
             })
         });
+    println!("Starting up Bot...");
     framework.run().await.unwrap();
 }
