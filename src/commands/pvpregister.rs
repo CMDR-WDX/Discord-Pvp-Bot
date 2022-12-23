@@ -126,7 +126,7 @@ pub async fn pvpregister(
                 })
             }).await?;
         
-            tokio::time::sleep(Duration::from_secs(10)).await;
+            tokio::time::sleep(Duration::from_secs(60)).await;
             direct_message.delete(ctx.http()).await?;
 
         }

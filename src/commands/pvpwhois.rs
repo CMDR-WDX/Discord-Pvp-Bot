@@ -114,13 +114,14 @@ impl CmdrWhoisLookupResponseSuccess {
             _ => "\n\n**__Recent History__**\n\n"
         };
         embed.title(format!("CMDR {}", self.cmdr_name));
-        embed.description(format!("\t:dagger: × {}\t:skull: × {} {}", self.deaths, self.kills, description_as_heading));
-
-        embed.field(":busts_in_silhouette:", cmdr_row.join("\n"), true);
-        if has_system_data {
-            embed.field(":ringed_planet:", system_row.join("\n"), true);
+        embed.description(format!(" :dagger: × {} :skull: × {} {}", self.kills, self.deaths, description_as_heading));
+        if historic_data_len > 0 {
+            embed.field(":busts_in_silhouette:", cmdr_row.join("\n"), true);
+            if has_system_data {
+                embed.field(":ringed_planet:", system_row.join("\n"), true);
+            }
+            embed.field(":calendar_spiral:", date_row.join("\n"), true);
         }
-        embed.field(":calendar_spiral:", date_row.join("\n"), true);
         embed.footer(|f| f.text(format!("Asked by {}", callee)));
     
         return embed;
