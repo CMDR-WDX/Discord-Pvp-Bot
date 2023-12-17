@@ -1,6 +1,9 @@
 use std::time::Duration;
 
+use crate::util::new_username::convert_tag_to_username;
+
 use super::super::{Context, Error};
+
 
 /// Check if you have an Account with Pvp Bot.
 #[poise::command(slash_command)]
@@ -8,7 +11,7 @@ pub async fn pvpself(
     ctx: Context<'_>
 ) -> Result<(), Error> {
     let user = ctx.author();
-    let handle = ctx.say(format!("You are {}. Your ID is {}",  user.tag(), user.id)).await?;
+    let handle = ctx.say(format!("You are {}. Your ID is {}",  convert_tag_to_username(user.tag())  , user.id)).await?;
     tokio::time::sleep(Duration::new(2, 0)).await;
     handle.edit(ctx, |x| {
         x.content("This command is not yet implemented.")

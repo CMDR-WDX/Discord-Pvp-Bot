@@ -2,11 +2,12 @@
 name = "discord_pvp_bot"
 version = "0.1.0"
 edition = "2021"
+authors = ["CMDR-WDX"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-poise = "0.5.2"
+poise = "0.5.7"
 tokio = { version = "1.21.2", features = ["macros", "rt-multi-thread"] }
 dotenv = "0.15"
 chrono = "0.4.23"
@@ -14,3 +15,4 @@ reqwest = { version = "0.11", features = ["json"] }
 urlencoding = "2.1.2"
 serde = { version = "1.0", features = ["derive"] }
 once_cell = {version = "1.16.0"}
+openssl = { version = "0.10", features = ["vendored"] }

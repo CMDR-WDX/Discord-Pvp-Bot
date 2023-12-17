@@ -13,7 +13,7 @@ struct OkResponse {
 
 use std::time::Duration;
 
-use poise::serenity_prelude::{CacheHttp, Color, GuildId, RoleId, User};
+use poise::serenity_prelude::{Color, GuildId, RoleId, User};
 use serde::{Serialize, Deserialize};
 
 use crate::data::Environment;

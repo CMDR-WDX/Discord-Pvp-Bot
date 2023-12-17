@@ -2,6 +2,8 @@ use poise::serenity_prelude::{CreateEmbed, Color};
 use reqwest::StatusCode;
 use serde::{Deserialize, Serialize};
 
+use crate::util::new_username::convert_tag_to_username;
+
 use super::super::{Context, Error};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -127,8 +129,8 @@ impl CmdrWhoisLookupResponseSuccess {
         return embed;
     }
 
-    pub async fn get_from_server(cmdr_name: String) -> Result<Option<Self>, String> {
-        let safe_cmdr_name = urlencoding::encode(cmdr_name.as_str()).into_owned();
+    pub async fn get_from_server(cmdr_name: &String) -> Result<Option<Self>, String> {
+        let safe_cmdr_name = urlencoding::encode(&cmdr_name.as_str()).into_owned();
         let server_url = crate::data::Environment::server_address();
         let server_auth = crate::data::Environment::server_auth();
 
@@ -171,8 +173,7 @@ pub async fn pvpwhois(
     #[description="The CMDR name (without the CMDR Prefix)"] cmdr: String
 ) -> Result<(), Error> {
 
-    let response =  CmdrWhoisLookupResponseSuccess::get_from_server(cmdr).await;
-
+    let response =  CmdrWhoisLookupResponseSuccess::get_from_server(&cmdr).await;
 
     let message = ctx.send(|builder| {
         builder
@@ -183,8 +184,8 @@ pub async fn pvpwhois(
                     },
                     Ok(data) => {
                         match data {
-                            Some(response) => response.apply_to_embed(embed, ctx.author().tag()).color(Color::DARK_GREEN),
-                            None => embed.color(Color::GOLD).title("Not Found").description("We do not have any data for this CMDR.")
+                            Some(response) => response.apply_to_embed(embed, convert_tag_to_username(ctx.author().tag())).color(Color::DARK_GREEN),
+                            None => embed.color(Color::GOLD).title("Not Found").description(format!("We do not have any data for CMDR {}", &cmdr).as_str())
                         }
                     }
                 }

@@ -1,0 +1,328 @@
+{
+  "success": "Kill data returned",
+  "count": 46,
+  "kills": [
+    {
+      "id": 85867,
+      "timestamp": "2023-12-11 20:54:30",
+      "killer_name": "buttholejenkins",
+      "victim_name": "CyberPank",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85866,
+      "timestamp": "2023-12-11 20:54:26",
+      "killer_name": "CyberPank",
+      "victim_name": "buttholejenkins",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85865,
+      "timestamp": "2023-12-11 20:51:10",
+      "killer_name": "buttholejenkins",
+      "victim_name": "dark adam",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85864,
+      "timestamp": "2023-12-11 20:49:01",
+      "killer_name": "phDeez",
+      "victim_name": "buttholejenkins",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85863,
+      "timestamp": "2023-12-11 20:48:09",
+      "killer_name": "buttholejenkins",
+      "victim_name": "Ars145",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85862,
+      "timestamp": "2023-12-11 20:46:31",
+      "killer_name": "Jan-RD2",
+      "victim_name": "MARVIN THE PERPLEXED",
+      "location": "HIP 97950"
+    },
+    {
+      "id": 85861,
+      "timestamp": "2023-12-11 20:44:54",
+      "killer_name": "phDeez",
+      "victim_name": "buttholejenkins",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85860,
+      "timestamp": "2023-12-11 20:38:25",
+      "killer_name": "CyberPank",
+      "victim_name": "buttholejenkins",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85859,
+      "timestamp": "2023-12-11 20:34:19",
+      "killer_name": "buttholejenkins",
+      "victim_name": "Moscito",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85858,
+      "timestamp": "2023-12-11 20:32:30",
+      "killer_name": "CyberPank",
+      "victim_name": "buttholejenkins",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85857,
+      "timestamp": "2023-12-11 20:29:43",
+      "killer_name": "buttholejenkins",
+      "victim_name": "Moscito",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85856,
+      "timestamp": "2023-12-11 20:27:17",
+      "killer_name": "buttholejenkins",
+      "victim_name": "CyberPank",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85855,
+      "timestamp": "2023-12-11 20:20:08",
+      "killer_name": "buttholejenkins",
+      "victim_name": "Grincake",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85854,
+      "timestamp": "2023-12-11 20:16:18",
+      "killer_name": "buttholejenkins",
+      "victim_name": "CyberPank",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85853,
+      "timestamp": "2023-12-11 20:12:24",
+      "killer_name": "Jan-RD2",
+      "victim_name": "NICO SOLOS",
+      "location": "HIP 97950"
+    },
+    {
+      "id": 85852,
+      "timestamp": "2023-12-11 20:10:43",
+      "killer_name": "Jan-RD2",
+      "victim_name": "BADERBORN",
+      "location": "HIP 97950"
+    },
+    {
+      "id": 85851,
+      "timestamp": "2023-12-11 20:09:39",
+      "killer_name": "Jan-RD2",
+      "victim_name": "NEO CHAOS",
+      "location": "HIP 97950"
+    },
+    {
+      "id": 85850,
+      "timestamp": "2023-12-11 20:01:39",
+      "killer_name": "Jan-RD2",
+      "victim_name": "JAKOB POTESTAS",
+      "location": "HIP 97950"
+    },
+    {
+      "id": 85849,
+      "timestamp": "2023-12-11 08:27:18",
+      "killer_name": "buttholejenkins",
+      "victim_name": "BlossomForth23",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85848,
+      "timestamp": "2023-12-11 08:10:57",
+      "killer_name": "buttholejenkins",
+      "victim_name": "BlossomForth23",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85847,
+      "timestamp": "2023-12-11 07:58:29",
+      "killer_name": "buttholejenkins",
+      "victim_name": "BlossomForth23",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85846,
+      "timestamp": "2023-12-11 07:58:02",
+      "killer_name": "buttholejenkins",
+      "victim_name": "MagicWizardMan",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85845,
+      "timestamp": "2023-12-11 07:43:06",
+      "killer_name": "buttholejenkins",
+      "victim_name": "_Bait_",
+      "location": "Byoomi PZ-O e6-5855"
+    },
+    {
+      "id": 85844,
+      "timestamp": "2023-12-11 03:45:34",
+      "killer_name": "Korean Dan Schneider",
+      "victim_name": "Rollins",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85843,
+      "timestamp": "2023-12-11 03:45:09",
+      "killer_name": "BAttlestarcheese",
+      "victim_name": "Sesim",
+      "location": "Puppis Sector TO-R b4-4"
+    },
+    {
+      "id": 85842,
+      "timestamp": "2023-12-11 03:37:54",
+      "killer_name": "Korean Dan Schneider",
+      "victim_name": "Stupidlama",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85841,
+      "timestamp": "2023-12-11 03:27:58",
+      "killer_name": "Yawgymoth",
+      "victim_name": "VIOLET VAL",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85840,
+      "timestamp": "2023-12-11 03:22:34",
+      "killer_name": "Sesim",
+      "victim_name": "MarcusCure",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85839,
+      "timestamp": "2023-12-11 03:15:30",
+      "killer_name": "Yawgymoth",
+      "victim_name": "Clodius the one",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85838,
+      "timestamp": "2023-12-11 03:01:47",
+      "killer_name": "Yawgymoth",
+      "victim_name": "Eli-Chanpu",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85837,
+      "timestamp": "2023-12-11 02:49:17",
+      "killer_name": "Salty Canadian",
+      "victim_name": "ACowForAllSeasons",
+      "location": "Puppis Sector TO-R b4-3"
+    },
+    {
+      "id": 85836,
+      "timestamp": "2023-12-11 02:39:05",
+      "killer_name": "Salty Canadian",
+      "victim_name": "ACowForAllSeasons",
+      "location": "Puppis Sector TO-R b4-3"
+    },
+    {
+      "id": 85835,
+      "timestamp": "2023-12-11 02:33:52",
+      "killer_name": "Yawgymoth",
+      "victim_name": "MAJOR DISTRESS",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85834,
+      "timestamp": "2023-12-11 02:20:03",
+      "killer_name": "Yawgymoth",
+      "victim_name": "DICK C. NOURMOUS",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85833,
+      "timestamp": "2023-12-11 02:01:43",
+      "killer_name": "Salty Canadian",
+      "victim_name": "ACowForAllSeasons",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85832,
+      "timestamp": "2023-12-11 01:52:59",
+      "killer_name": "Korean Dan Schneider",
+      "victim_name": "JackieDaLynx",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85831,
+      "timestamp": "2023-12-11 01:33:59",
+      "killer_name": "Korean Dan Schneider",
+      "victim_name": "ACowForAllSeasons",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85830,
+      "timestamp": "2023-12-11 01:28:21",
+      "killer_name": "ACowForAllSeasons",
+      "victim_name": "Rollins",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85829,
+      "timestamp": "2023-12-11 01:25:55",
+      "killer_name": "Korean Dan Schneider",
+      "victim_name": "K!NGPIN",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85828,
+      "timestamp": "2023-12-11 01:21:20",
+      "killer_name": "ACowForAllSeasons",
+      "victim_name": "Tae Hun",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85827,
+      "timestamp": "2023-12-11 01:14:33",
+      "killer_name": "Korean Dan Schneider",
+      "victim_name": "K!NGPIN",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85826,
+      "timestamp": "2023-12-11 01:04:48",
+      "killer_name": "Korean Dan Schneider",
+      "victim_name": "Sylent myke",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85825,
+      "timestamp": "2023-12-11 01:02:30",
+      "killer_name": "Korean Dan Schneider",
+      "victim_name": "MAJOR DISTRESS",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85824,
+      "timestamp": "2023-12-11 00:52:33",
+      "killer_name": "Korean Dan Schneider",
+      "victim_name": "Sylent myke",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85823,
+      "timestamp": "2023-12-11 00:47:02",
+      "killer_name": "Korean Dan Schneider",
+      "victim_name": "MAJOR DISTRESS",
+      "location": "Shinrarta Dezhra"
+    },
+    {
+      "id": 85822,
+      "timestamp": "2023-12-11 00:19:07",
+      "killer_name": "Cobalt Viper",
+      "victim_name": "UltiFerocity",
+      "location": "Byoomi PZ-O e6-5855"
+    }
+  ]
+}

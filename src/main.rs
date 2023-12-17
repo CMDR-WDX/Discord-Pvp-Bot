@@ -1,7 +1,11 @@
 mod commands;
 mod data;
-use commands::{pvpself::pvpself, pvpwhois::pvpwhois, pvpregister::pvpregister};
+mod util;
+mod other;
+use commands::{pvpself::pvpself, pvpwhois::pvpwhois, pvpregister::pvpregister, pvpweekly::pvpweekly};
 use poise::serenity_prelude as serenity;
+
+
 
 pub struct Data {}
 pub type Error = Box<dyn std::error::Error + Send + Sync>;
@@ -15,7 +19,7 @@ async fn main() {
     data::startup_check().unwrap();
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
-            commands: vec![pvpself(), pvpwhois(), pvpregister()],
+            commands: vec![pvpself(), pvpwhois(), pvpregister(), pvpweekly()],
             ..Default::default()
         })
         .token(data::Environment::discord_token())
