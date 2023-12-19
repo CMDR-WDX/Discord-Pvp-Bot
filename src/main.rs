@@ -5,6 +5,8 @@ mod other;
 use commands::{pvpself::pvpself, pvpwhois::pvpwhois, pvpregister::pvpregister, pvpweekly::pvpweekly};
 use poise::serenity_prelude as serenity;
 
+use crate::other::weekly_summary_event::subscribe_for_event;
+use tokio_cron_scheduler::{JobScheduler, JobToRun, Job};
 
 
 pub struct Data {}
@@ -31,6 +33,29 @@ async fn main() {
                 Ok(Data {})
             })
         });
+    
+    // Scheduling
+    println!("Setting up Cron Scheduler...");
+    let sched = JobScheduler::new().await.unwrap();
+
+    let job = Job::new_async("0 0 8 * * Thu", | _uuid, mut _l| {
+        Box::pin(async move {
+            let _ = subscribe_for_event().await;
+        })
+    }).map_err(|x| x.to_string());   
+    
+    match job {
+        Err(err) => println!("ERR: {}", err),
+        Ok(val) => match sched.add(
+            val
+        ).await {
+            Ok(_) => println!("Scheduler setup."),
+            Err(err) => println!("{}", err.to_string()),
+        }
+    }
+
+    let _ = sched.start().await;
+    
     println!("Starting up Bot...");
     framework.run().await.unwrap();
 }

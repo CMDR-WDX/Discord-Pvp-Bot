@@ -18,7 +18,7 @@ pub async fn get_kills_for_current_cycle() -> Result<Vec<RangeResponseEntry>, St
 /// Note that the lower bound is inclusive, the upper bound exclusive
 /// This means a search for 2023-01-01 - 2023-01-10 will have all kills between the *start* of 2023-01-01 and the *start* of 2023-01-10.
 /// We also want all kills till the *end* of 2023-01-10. To get this, we basically just add a day at the end.
-fn get_query_string_for_api_call(start: DateTime<Utc>, end: DateTime<Utc>) -> String {
+pub fn get_query_string_for_api_call(start: DateTime<Utc>, end: DateTime<Utc>) -> String {
     let start_string = start.format("%Y-%m-%d");
     let end_string = end.add(Days::new(1)).format("%Y-%m-%d");
 
@@ -79,7 +79,7 @@ impl _RangeResponseEntry {
 }
 
 
-async fn fetch_from_server(query_string: String) -> Result<Vec<RangeResponseEntry>, String> {
+pub async fn fetch_from_server(query_string: String) -> Result<Vec<RangeResponseEntry>, String> {
     let server_url = crate::data::Environment::server_address();
     let server_auth = crate::data::Environment::server_auth();
 
@@ -99,9 +99,9 @@ async fn fetch_from_server(query_string: String) -> Result<Vec<RangeResponseEntr
         Ok(data) => match data {
             Some(e) => {
                 let mapped_data = e.into_iter().map(|x| x.convert()).collect::<Vec<_>>();
-                return Ok(mapped_data);
+                Ok(mapped_data)
             },
-            None => return Err("Failed to receive any data from Range Query".to_string())
+            None => Err("Failed to receive any data from Range Query".to_string())
         },
         Err(err) => Err(err.to_string()),
     }
@@ -153,5 +153,5 @@ pub fn get_sorted_weekly_summary(data: Vec<RangeResponseEntry>) -> Vec<(String, 
 
     let mut as_tuple_vec: Vec<(String, u32)>  =  summary_map.iter().map(|(k,v)| { (k.to_owned(),v.to_owned())}).collect::<_>();
     as_tuple_vec.sort_by(|a,b| {b.1.cmp(&a.1) });
-    return as_tuple_vec
+    as_tuple_vec
 }

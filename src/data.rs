@@ -10,7 +10,8 @@ pub struct Environment {
     data_server_address: String,
     data_server_auth: String,
     role_authenticated: u64,
-    role_administrator: u64
+    role_administrator: u64,
+    discord_weekly_update_channel_id: u64
 }
 
 static ENVIRONMENT: OnceCell<Environment> = OnceCell::new();
@@ -33,6 +34,10 @@ impl Environment {
 
     pub fn role_auth() -> u64 {
         return ENVIRONMENT.get().unwrap().role_authenticated;
+    }
+
+    pub fn discord_weekly_update_channel_id() -> u64 {
+        return ENVIRONMENT.get().unwrap().discord_weekly_update_channel_id;
     }
 
     pub fn server_auth() -> String {
@@ -58,7 +63,8 @@ pub fn startup_check() -> Result<(), String> {
         "DATA_SERVER_ADDRESS",
         "DATA_SERVER_AUTH",
         "ROLE_AUTHENTICATED",
-        "ROLE_ADMINISTRATOR"
+        "ROLE_ADMINISTRATOR",
+        "DISCORD_WEEKLY_UPDATE_CHANNEL_ID"
     ];
     let missing_vars: Vec<String> = required_vars.iter().filter(|x| std::env::var(x).is_err()).map(|x|x.to_string()).collect();
 
@@ -71,7 +77,8 @@ pub fn startup_check() -> Result<(), String> {
     let integer_vars = vec![
         "GGI_GUILD_ID",
         "ROLE_AUTHENTICATED",
-        "ROLE_ADMINISTRATOR"
+        "ROLE_ADMINISTRATOR",
+        "DISCORD_WEEKLY_UPDATE_CHANNEL_ID"
     ];
 
     let non_integer_vars: Vec<String> = integer_vars.iter().filter(|x| {
@@ -88,10 +95,12 @@ pub fn startup_check() -> Result<(), String> {
     let init_env = Environment { 
         discord_token: std::env::var("DISCORD_TOKEN").expect("missing DISCORD_TOKEN"), 
         ggi_guild_id: std::env::var("GGI_GUILD_ID").expect("missing GGI_GUILD_ID").parse().expect("Failed to parse GGI_GUILD_ID"), 
+        discord_weekly_update_channel_id: std::env::var("DISCORD_WEEKLY_UPDATE_CHANNEL_ID").expect("missing DISCORD_WEEKLY_UPDATE_CHANNEL_ID").parse().expect("Failed to parse DISCORD_WEEKLY_UPDATE_CHANNEL_ID"), 
         data_server_address: std::env::var("DATA_SERVER_ADDRESS").expect("missing DATA_SERVER_ADDRESS"), 
         data_server_auth: std::env::var("DATA_SERVER_AUTH").expect("missing DATA_SERVER_AUTH"), 
         role_authenticated: std::env::var("ROLE_AUTHENTICATED").expect("missing ROLE_AUTHENTICATED").parse().expect("Failed to parse ROLE_AUTHENTICATED"),
         role_administrator: std::env::var("ROLE_ADMINISTRATOR").expect("missing ROLE_ADMINISTRATOR").parse().expect("Failed to parse ROLE_ADMINISTRATOR"),
+        
     };
 
     ENVIRONMENT.set(init_env).unwrap();

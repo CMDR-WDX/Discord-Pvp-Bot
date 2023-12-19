@@ -1,14 +1,14 @@
 use poise::serenity_prelude::Color;
 
-use crate::other::weekly_summary::{get_kills_for_current_cycle, get_sorted_weekly_summary, get_relevant_time_range};
+use crate::other::{weekly_summary::{get_kills_for_current_cycle, get_sorted_weekly_summary, get_relevant_time_range}, weekly_summary_event::{build_weekly_embeds, is_cmdr_in_result_set}};
 
 use super::super::{Context, Error};
 
-struct DataRow {
-    position: u32,
-    cmdr: String,
-    kill_count: u32,
-    highlight: bool
+pub struct DataRow {
+    pub position: u32,
+    pub cmdr: String,
+    pub kill_count: u32,
+    pub highlight: bool
 }
 
 
@@ -82,30 +82,7 @@ pub async fn pvpweekly(
                     match data_to_present {
                         None => create_not_found_error(&cmdr_name, embed),
                         Some(data) => {
-                            embed.color(Color::DARK_GREEN).title("Result for current leaderboard week");
-
-                            let mut position_row: Vec<String> = vec![];
-                            let mut cmdr_row: Vec<String> = vec![];
-                            let mut count_row: Vec<String> = vec![];
-
-                            for entry in data {
-                                match entry.highlight {
-                                    true => {
-                                        position_row.push(format!("**{}**", entry.position));
-                                        cmdr_row.push(format!("**{}**", entry.cmdr));
-                                        count_row.push(format!("**{}**", entry.kill_count));
-                                    }
-                                    false => {
-                                        position_row.push(format!("{}", entry.position));
-                                        cmdr_row.push(format!("{}", entry.cmdr));
-                                        count_row.push(format!("{}", entry.kill_count));
-                                    }
-                                }
-                            }
-
-                            embed.field(":trophy:", position_row.join("\n"), true)
-                                .field(":busts_in_silhouette:", cmdr_row.join("\n"), true)
-                                .field("×:dagger:", count_row.join("\n"), true);
+                            build_weekly_embeds(data, embed);
                         },
                     };
 
@@ -122,9 +99,4 @@ pub async fn pvpweekly(
     }
 
     Ok(())
-}
-
-
-fn is_cmdr_in_result_set(data: &Vec<(String, u32)>, cmdr: &String) -> bool {
-    return data.iter().find(|&x| x.0.eq_ignore_ascii_case(&cmdr)).is_some();
 }
