@@ -1,3 +1,4 @@
+use chrono::NaiveDate;
 use poise::serenity_prelude::Color;
 
 use crate::other::weekly_summary_event::subscribe_for_event;
@@ -8,9 +9,24 @@ use crate::{Context, Error};
 /// Check if you have an Account with Pvp Bot.
 #[poise::command(slash_command)]
 pub async fn pvpadmin_force_weekly_summary(
-    ctx: Context<'_>
+    ctx: Context<'_>,
+    #[description="optional; Use YYYY-MM-DD format. If left empty, the current day is used."] for_date: Option<String>
 ) -> Result<(), Error> {
     let is_admin = is_user_admin(&ctx).await;
+
+    let override_date: Option<NaiveDate> = match for_date {
+        Some(e) => {
+            match NaiveDate::parse_from_str(e.as_str(), "%Y-%m-%d").map_err(|x| x.to_string()) {
+                Ok(date) => Some(date),
+                Err(err) => {
+                    ctx.send(|x| x.ephemeral(true).embed(|e| e.color(Color::RED).title("Error").description(err))).await?;
+                    return Ok(());
+                },
+            }
+        }
+        None => None
+    };
+
 
     let _ = match is_admin {
         false => {
@@ -21,7 +37,7 @@ pub async fn pvpadmin_force_weekly_summary(
             (request, true)
         },
         true => {
-            let response = subscribe_for_event().await;
+            let response = subscribe_for_event(override_date).await;
             let embed_color =  match response {
                 Ok(_) => Color::DARK_GREEN,
                 Err(_) => Color::RED

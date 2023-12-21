@@ -40,7 +40,7 @@ async fn main() {
 
     let job = Job::new_async("0 0 8 * * Thu", | _uuid, mut _l| {
         Box::pin(async move {
-            let _ = subscribe_for_event().await;
+            let _ = subscribe_for_event(None).await;
         })
     }).map_err(|x| x.to_string());   
     

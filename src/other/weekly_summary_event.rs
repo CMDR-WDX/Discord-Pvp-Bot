@@ -1,15 +1,15 @@
 use poise::serenity_prelude::{Http, ChannelId, Color};
 use std::ops::{Add, Sub};
-use chrono::{Datelike, Timelike, DateTime, Utc, Days};
+use chrono::{Datelike, Timelike, DateTime, Utc, Days, NaiveDate, NaiveDateTime, NaiveTime};
 
 use crate::{data::{self, Environment}, commands::pvpweekly::DataRow};
 
 use super::weekly_summary::{fetch_from_server, get_query_string_for_api_call, get_sorted_weekly_summary};
 
-pub async fn subscribe_for_event() -> Result<(), String> {
+pub async fn subscribe_for_event(date_override: Option<NaiveDate> ) -> Result<(), String> {
     let client = Http::new(&data::Environment::discord_token());
 
-    let relevant_range = get_relevant_time_range_summary();
+    let relevant_range = get_relevant_time_range_summary(date_override);
     let data = fetch_from_server(get_query_string_for_api_call(relevant_range.0, relevant_range.1)).await;
 
 
@@ -57,10 +57,13 @@ pub async fn subscribe_for_event() -> Result<(), String> {
     };
 }
 
-fn get_relevant_time_range_summary() -> (DateTime<Utc>, DateTime<Utc>) {
-    let now = chrono::offset::Utc::now();
+fn get_relevant_time_range_summary(date_override: Option<NaiveDate>) -> (DateTime<Utc>, DateTime<Utc>) {
+    let date = match date_override {
+        None => chrono::offset::Utc::now(),
+        Some(e) => NaiveDateTime::new(e, NaiveTime::from_num_seconds_from_midnight_opt(0,0).unwrap()).and_utc()
+    };
 
-    let offset_to_end = match now.weekday() {
+    let offset_to_end = match date.weekday() {
         chrono::Weekday::Mon => 4,
         chrono::Weekday::Tue => 5,
         chrono::Weekday::Wed => 6,
@@ -70,7 +73,7 @@ fn get_relevant_time_range_summary() -> (DateTime<Utc>, DateTime<Utc>) {
         chrono::Weekday::Sun => 3,
     };
 
-    let mut start = now.sub(Days::new(offset_to_end));
+    let mut start = date.sub(Days::new(offset_to_end));
 
     fn override_hours_and_minutes_to_0800(date: DateTime<Utc>) -> Option<DateTime<Utc>> {
         return date.with_hour(8)?.with_minute(0)?.with_second(0)?.with_nanosecond(0)
