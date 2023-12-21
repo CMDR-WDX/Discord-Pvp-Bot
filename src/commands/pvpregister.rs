@@ -111,24 +111,15 @@ pub async fn pvpregister(
         },
         Ok(token) => {
             // Got a valid token from the Server
-            ctx.send(|b|b.embed(|e| {
+            let sleep_duration_seconds = 60;
+            let message = ctx.send(|b|b.ephemeral(true).embed(|e| {
                 e.color(Color::DARK_GREEN)
                     .title(":white_check_mark: New API Key created")
-                    .description("Go check your DMs! You have 60s to copy the key.")
+                    .description(format!("You have {}s to copy the key.\n\nOnly you can see this message.", sleep_duration_seconds))
+                    .field("API Key", format!("`{}`", token), false)
             })).await?;
-            // Now send a DM
-            let direct_message = user.direct_message(ctx.http(), |x| {
-                x.add_embed(|e| {
-                    e.title("New API Key requested")
-                     .description("You have requested an API Key for the Pvp Bot. Copy the Key from below. **This message will delete itself in 60s, so be quick.")
-                     .field("API Key", token, false)
-                     .footer(|f| f.text("You received this message because you requested a new API Key."))
-                })
-            }).await?;
-        
-            tokio::time::sleep(Duration::from_secs(60)).await;
-            direct_message.delete(ctx.http()).await?;
-
+            tokio::time::sleep(Duration::from_secs(sleep_duration_seconds)).await;
+            message.edit(ctx, |f| f.embed(|e| e.title(":white_check_mark: New API Key created").color(Color::BLUE).description("Key has been hidden. Rerun `/pvpregister` if you need a new key."))).await?;
         }
     }
 
