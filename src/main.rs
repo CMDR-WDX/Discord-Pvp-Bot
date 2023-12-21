@@ -5,8 +5,8 @@ mod other;
 use commands::{pvpself::pvpself, pvpwhois::pvpwhois, pvpregister::pvpregister, pvpweekly::pvpweekly};
 use poise::serenity_prelude as serenity;
 
-use crate::other::weekly_summary_event::subscribe_for_event;
-use tokio_cron_scheduler::{JobScheduler, JobToRun, Job};
+use crate::{other::weekly_summary_event::subscribe_for_event, commands::admin::pvpadminforceweeklysummary::pvpadmin_force_weekly_summary};
+use tokio_cron_scheduler::{JobScheduler, Job};
 
 
 pub struct Data {}
@@ -21,7 +21,7 @@ async fn main() {
     data::startup_check().unwrap();
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
-            commands: vec![pvpself(), pvpwhois(), pvpregister(), pvpweekly()],
+            commands: vec![pvpself(), pvpwhois(), pvpregister(), pvpweekly(), pvpadmin_force_weekly_summary()],
             ..Default::default()
         })
         .token(data::Environment::discord_token())

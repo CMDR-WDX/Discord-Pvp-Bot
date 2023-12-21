@@ -1,6 +1,4 @@
-use std::time::Duration;
-
-use crate::util::new_username::convert_tag_to_username;
+use crate::{util::new_username::convert_tag_to_username, commands::admin::util::is_user_admin};
 
 use super::super::{Context, Error};
 
@@ -11,10 +9,17 @@ pub async fn pvpself(
     ctx: Context<'_>
 ) -> Result<(), Error> {
     let user = ctx.author();
-    let handle = ctx.say(format!("You are {}. Your ID is {}",  convert_tag_to_username(user.tag())  , user.id)).await?;
-    tokio::time::sleep(Duration::new(2, 0)).await;
-    handle.edit(ctx, |x| {
-        x.content("This command is not yet implemented.")
-    }).await?;
-    Ok(())
+    let is_admin = is_user_admin(&ctx).await;
+    let admin_str = match is_admin {
+        true => "",
+        false => "not "
+    };
+    let content = format!("You are {}.\nYour ID is {}\n You are {}an admin.",  convert_tag_to_username(user.tag())  , user.id, admin_str);
+    match ctx.send(|x| x.ephemeral(true).content(content)).await {
+        Ok(_) => {},
+        Err(err) => println!("Error in pvpself command: {}", err),
+    }
+    return Ok(());
+
+
 }
