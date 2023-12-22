@@ -5,7 +5,7 @@ mod other;
 use commands::{pvpself::pvpself, pvpwhois::pvpwhois, pvpregister::pvpregister, pvpweekly::pvpweekly};
 use poise::serenity_prelude as serenity;
 
-use crate::{other::weekly_summary_event::subscribe_for_event, commands::admin::pvpadminforceweeklysummary::pvpadmin_force_weekly_summary};
+use crate::{other::weekly_summary_event::subscribe_for_event, commands::admin::pvpadminforceweeklysummary::pvpadmin_force_weekly_summary, data::Environment};
 use tokio_cron_scheduler::{JobScheduler, Job};
 
 
@@ -38,7 +38,7 @@ async fn main() {
     println!("Setting up Cron Scheduler...");
     let sched = JobScheduler::new().await.unwrap();
 
-    let job = Job::new_async("0 0 8 * * Thu", | _uuid, mut _l| {
+    let job = Job::new_async(Environment::weekly_summary_cron().as_str(), | _uuid, mut _l| {
         Box::pin(async move {
             let _ = subscribe_for_event(None).await;
         })
